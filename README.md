@@ -7,8 +7,7 @@ This library's capabilities include:
 * Query information about processor cores, processor packages, caches, NUMA nodes, and processor groups.
 * Query the default processor group for processes.
 * Query the assigned processor group for threads.
-* Assign processes and threads to specific processor groups.
-* Create new processor groups.
+* Assign threads to specific processor groups.
 
 ## Why is this library useful?
 
