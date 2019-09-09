@@ -97,6 +97,7 @@ namespace MultiProcessorExtensions
         private UInt64 Reserved_00_07;
         private UInt64 Reserved_08_15;
         private UInt32 Reserved_16_19;
+        [MarshalAs(UnmanagedType.ByValArray)]
         public PROCESSOR_GROUP_INFO[] GroupInfo;
     }
 
