@@ -6,6 +6,11 @@ namespace MultiProcessorExtensions
 {
     public static class ProcessExtensions
     {
+        /// <summary>
+        /// Retrieves the processor group affinity of the specified process.
+        /// </summary>
+        /// <param name="process">The process.</param>
+        /// <returns>An array of processor group numbers. A group number is included in the array if a thread in the process is assigned to a processor in the group.</returns>
         public static ushort[] GetGroupAffinity(this Process process)
         {
             var procHandle = process.Handle;
