@@ -19,10 +19,10 @@ namespace MultiProcessorExtensions
         /// </summary>
         public UInt16 Group { get; private set; }
 
-        internal GroupAffinity(UIntPtr mask, UInt16 group)
+        internal GroupAffinity(UInt16 group, UIntPtr mask)
         {
-            this.Mask = mask;
             this.Group = group;
+            this.Mask = mask;
         }
 
         internal GroupAffinity(GROUP_AFFINITY affinity)

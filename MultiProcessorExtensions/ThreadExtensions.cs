@@ -37,6 +37,11 @@ namespace MultiProcessorExtensions
 
         public static void SetProcessorGroup(this ProcessThread thread, ushort groupNumber, UIntPtr affinityMask)
         {
+            SetProcessorGroup(thread, new GroupAffinity(groupNumber, affinityMask));
+        }
+
+        public static void SetProcessorGroup(this ProcessThread thread, GroupAffinity group)
+        {
             IntPtr hThread = NativeMethods.OpenThread(NativeMethods.ThreadAccess.SET_INFORMATION | NativeMethods.ThreadAccess.QUERY_INFORMATION, false, thread.Id);
             if (hThread == IntPtr.Zero)
             {
@@ -46,8 +51,8 @@ namespace MultiProcessorExtensions
             {
                 var newAffinity = new GROUP_AFFINITY
                 {
-                    Group = groupNumber,
-                    Mask = affinityMask
+                    Group = group.Group,
+                    Mask = group.Mask
                 };
                 var previousAffinity = new GROUP_AFFINITY(); ;
                 if (!NativeMethods.SetThreadGroupAffinity(hThread, ref newAffinity, ref previousAffinity))

@@ -46,7 +46,7 @@ namespace MultiProcessorExtensions
             this.LineSize = cache.LineSize;
             this.CacheSize = cache.CacheSize;
             this.Type = (CacheType)cache.Type;
-            this.Affinity = new GroupAffinity(cache.GroupMask.Mask, cache.GroupMask.Group);
+            this.Affinity = new GroupAffinity(cache.GroupMask.Group, cache.GroupMask.Mask);
         }
     }
 }
