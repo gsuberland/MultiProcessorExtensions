@@ -17,6 +17,10 @@ Multiple processor groups are also used in systems with less than 64 cores, but 
 
 High-performance applications running on systems with the above described properties may wish to manually specify processor groups for its threads in order to better distribute multi-threaded compute loads.
 
+## Installation
+
+Use [the NuGet Package](https://www.nuget.org/packages/MultiProcessorExtensions/) or download the repo and build in VS2019.
+
 ## Usage
 
 The usage is fairly self-explanatory: use the extension methods on `Process` and `ProcessThread` objects, and utilise the static functions of the `MultiProcessorInformation` class to fetch information about the relationship between process groups and the system's hardware.
