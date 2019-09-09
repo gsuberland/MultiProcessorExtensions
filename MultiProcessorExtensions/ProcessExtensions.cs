@@ -11,7 +11,7 @@ namespace MultiProcessorExtensions
             var procHandle = process.Handle;
 
             ushort arraySize = 0;
-            ushort[] affinities = null;
+            ushort[] affinities;
 
             bool success = false;
             const int blown = 100;
