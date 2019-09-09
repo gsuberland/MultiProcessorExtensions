@@ -17,6 +17,18 @@ Multiple processor groups are also used in systems with less than 64 cores, but 
 
 High-performance applications running on systems with the above described properties may wish to manually specify processor groups for its threads in order to better distribute multi-threaded compute loads.
 
+## Usage
+
+The usage is fairly self-explanatory: use the extension methods on `Process` and `ProcessThread` objects, and utilise the static functions of the `MultiProcessorInformation` class to fetch information about the relationship between process groups and the system's hardware.
+
+There is an example project provided, which prints information about the system and current process.
+
+### Why can't I use Thread instead of ProcessThread?
+
+There is not a 1:1 mapping between managed and native threads. Many managed threads may run on an unmanaged thread, a managed thread may be moved between unmanaged threads, and a managed thread may execute on a fiber instead of a thread.
+
+There is no reliable way to convert between a `Thread` object and a `ProcessThread` object, or vice versa.
+
 ## Compatibility
 
 This library targets most framework versions:
