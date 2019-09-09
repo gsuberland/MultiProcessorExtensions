@@ -22,7 +22,7 @@ High-performance applications running on systems with the above described proper
 
 This library targets most framework versions:
 
-* .NET Standard 2.1, 2.0, 1.6, 1.5, 1.4, 1.3, 1.2, 1.1
+* .NET Standard 2.1, 2.0
 * .NET Core 3.0, 2.2, 2.1
 * .NET Framework 4.8, 4.7.2, 4.7.1, 4.7, 4.6, 4.5.2, 4.5.1, 4.5, 4.0
 
