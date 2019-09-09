@@ -18,4 +18,4 @@ The functionality and API calls that this library relies upon were added in Wind
 
 ## License
 
-This code is released under the MIT license.
+This code is released under the [MIT license](LICENSE.md).
