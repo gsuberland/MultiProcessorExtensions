@@ -7,6 +7,8 @@ namespace MultiProcessorExtensions
 {
     internal static class NativeMethods
     {
+        public const int ERROR_INSUFFICIENT_BUFFER = 122;
+
         [DllImport("kernel32", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetLogicalProcessorInformationEx(
@@ -16,16 +18,26 @@ namespace MultiProcessorExtensions
         );
 
         [DllImport("kernel32", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetThreadGroupAffinity(
             IntPtr handle,
             ref GROUP_AFFINITY affinity
         );
 
         [DllImport("kernel32", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SetThreadGroupAffinity(
             IntPtr handle,
             ref GROUP_AFFINITY affinity,
             ref GROUP_AFFINITY previousAffinity
+        );
+
+        [DllImport("kernel32", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetProcessGroupAffinity(
+            IntPtr handle,
+            ref ushort GroupCount,
+            [In, Out] ushort[] GroupArray
         );
 
         [Flags]
