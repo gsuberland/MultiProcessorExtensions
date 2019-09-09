@@ -13,6 +13,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MPETests_Core22", "MPETests
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{44AF3A6A-67EB-41F8-B6E5-1DD7EFC2A762}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{A43B5BC4-A03D-4BD8-92A0-CDA3A9143875}"
+	ProjectSection(SolutionItems) = preProject
+		MPETests\CacheTests.cs = MPETests\CacheTests.cs
+		MPETests\GroupTests.cs = MPETests\GroupTests.cs
+		MPETests\NumaNodeTests.cs = MPETests\NumaNodeTests.cs
+		MPETests\ProcessorCoreTests.cs = MPETests\ProcessorCoreTests.cs
+		MPETests\ProcessorPackageTests.cs = MPETests\ProcessorPackageTests.cs
+		MPETests\ThreadExtensionTests.cs = MPETests\ThreadExtensionTests.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +89,7 @@ Global
 		{196B8FD6-C260-419B-900C-ED2786C52099} = {44AF3A6A-67EB-41F8-B6E5-1DD7EFC2A762}
 		{8E0C29F3-557E-4379-9743-FC8996817043} = {44AF3A6A-67EB-41F8-B6E5-1DD7EFC2A762}
 		{B1DA40DC-EB87-430F-A1DA-D93A34224E77} = {44AF3A6A-67EB-41F8-B6E5-1DD7EFC2A762}
+		{A43B5BC4-A03D-4BD8-92A0-CDA3A9143875} = {44AF3A6A-67EB-41F8-B6E5-1DD7EFC2A762}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A3104294-610E-4171-85AE-38EE62CFB7F0}
