@@ -21,6 +21,13 @@ namespace MultiProcessorExtensions
             ref GROUP_AFFINITY affinity
         );
 
+        [DllImport("kernel32", SetLastError = true)]
+        public static extern bool SetThreadGroupAffinity(
+            IntPtr handle,
+            ref GROUP_AFFINITY affinity,
+            ref GROUP_AFFINITY previousAffinity
+        );
+
         [Flags]
         internal enum ThreadAccess : int
         {

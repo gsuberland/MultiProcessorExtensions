@@ -34,5 +34,31 @@ namespace MultiProcessorExtensions
                 NativeMethods.CloseHandle(hThread);
             }
         }
+
+        public static void SetProcessorGroup(this ProcessThread thread, ushort groupNumber, UIntPtr affinityMask)
+        {
+            IntPtr hThread = NativeMethods.OpenThread(NativeMethods.ThreadAccess.SET_INFORMATION | NativeMethods.ThreadAccess.QUERY_INFORMATION, false, thread.Id);
+            if (hThread == IntPtr.Zero)
+            {
+                throw new InvalidOperationException($"OpenThread call failed. GetLastError: {Marshal.GetLastWin32Error()}");
+            }
+            try
+            {
+                var newAffinity = new GROUP_AFFINITY
+                {
+                    Group = groupNumber,
+                    Mask = affinityMask
+                };
+                var previousAffinity = new GROUP_AFFINITY(); ;
+                if (!NativeMethods.SetThreadGroupAffinity(hThread, ref newAffinity, ref previousAffinity))
+                {
+                    throw new InvalidOperationException($"SetThreadGroupAffinity call failed. GetLastError: {Marshal.GetLastWin32Error()}");
+                }
+            }
+            finally
+            {
+                NativeMethods.CloseHandle(hThread);
+            }
+        }
     }
 }
