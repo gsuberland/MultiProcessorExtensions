@@ -104,10 +104,15 @@ namespace MultiProcessorExtensions
                 .Select(ci => new NumaNodeInfo(ci.NumaNode)).ToArray();
         }
 
-        public static ProcessorGroupsInfo[] GetGroupsInfo()
+        public static ProcessorGroupsInfo GetGroupsInfo()
         {
-            return GetLogicalProcessorInformationEx<SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_GROUP>(LOGICAL_PROCESSOR_RELATIONSHIP.Group)
+            var groupInfos = GetLogicalProcessorInformationEx<SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_GROUP>(LOGICAL_PROCESSOR_RELATIONSHIP.Group)
                 .Select(ci => new ProcessorGroupsInfo(ci.Group)).ToArray();
+            if (groupInfos.Length != 1)
+            {
+                throw new InvalidOperationException("GetLogicalProcessorInformationEx did not return a single SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_GROUP instance.");
+            }
+            return groupInfos[0];
         }
     }
 }

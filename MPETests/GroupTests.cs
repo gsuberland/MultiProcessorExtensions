@@ -10,30 +10,17 @@ namespace MPETests
         [Fact]
         public void GroupInfoReturnsData()
         {
-            var groups = MultiProcessorInformation.GetGroupsInfo();
-            Assert.NotEmpty(groups);
+            var groupInfo = MultiProcessorInformation.GetGroupsInfo();
+            Assert.NotEmpty(groupInfo.Groups);
         }
 
         [Fact]
-        public void ProcessorPackageGroupMaskIsNotEmpty()
+        public void GroupMasksAreNotZero()
         {
-            var groups = MultiProcessorInformation.GetGroupsInfo();
-            foreach (var group in groups)
+            var groupInfo = MultiProcessorInformation.GetGroupsInfo();
+            foreach (var group in groupInfo.Groups)
             {
-                Assert.NotEmpty(group.Groups);
-            }
-        }
-
-        [Fact]
-        public void ProcessorPackageGroupMaskIsNotZero()
-        {
-            var groups = MultiProcessorInformation.GetGroupsInfo();
-            foreach (var group in groups)
-            {
-                foreach (var subgroup in group.Groups)
-                {
-                    Assert.True(subgroup.ActiveProcessorMask != UIntPtr.Zero);
-                }
+                Assert.True(group.ActiveProcessorMask != UIntPtr.Zero);
             }
         }
     }
