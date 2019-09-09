@@ -1,16 +1,5 @@
-dist: xenial
-addons:
-  snaps:
-  - name: dotnet-sdk
-    classic: true
-    channel: latest/beta
-sudo: required
 language: csharp
-solution: MultiProcessorExtensions.sln
 mono: none
-install:
-  - nuget restore MultiProcessorExtensions.sln
-  - nuget install xunit.runners -Version 2.0.0 -OutputDirectory testrunner
+dotnet: 2.1.801
 script:
-  - sudo snap alias dotnet-sdk.dotnet dotnet
-  - dotnet --version
+ - dotnet restore
