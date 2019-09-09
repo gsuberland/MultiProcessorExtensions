@@ -1,10 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
 
+    <GenerateErrorForMissingTargetingPacks>false</GenerateErrorForMissingTargetingPacks>
+
     <IsPackable>false</IsPackable>
+
+    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="src\bin\**" />
+    <EmbeddedResource Remove="src\bin\**" />
+    <None Remove="src\bin\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
@@ -16,4 +26,8 @@
     <ProjectReference Include="..\MultiProcessorExtensions\MultiProcessorExtensions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\MPETests\*.cs" />
+  </ItemGroup>
+  
 </Project>

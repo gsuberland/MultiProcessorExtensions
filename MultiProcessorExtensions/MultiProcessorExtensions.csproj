@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.1;netstandard2.0;netstandard1.6;netstandard1.5;netstandard1.4;netstandard1.3;netstandard1.2;netstandard1.1;net472;net471;net47;net462;net461;net46;net452;net451;net45;net40</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Graham Sutherland</Authors>
     <Version>0.0.1</Version>
@@ -14,6 +14,7 @@
     <Description>Allows for the querying and management of processor groups on a Windows system, including the ability to assign managed threads to a specific processor group.</Description>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>MultiProcessorExtensions.pfx</AssemblyOriginatorKeyFile>
+    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>

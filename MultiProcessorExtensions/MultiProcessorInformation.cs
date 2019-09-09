@@ -1,4 +1,8 @@
-﻿using System;
+﻿#if NET45 || NET40 || NETSTANDARD1_1
+#define OLD_DOT_NET_VERSION
+#endif
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -56,7 +60,11 @@ namespace MultiProcessorExtensions
                     throw new InvalidOperationException($"The call to GetLogicalProcessorInformationEx failed. Last error: {Marshal.GetLastWin32Error()}");
                 }
 
+#if OLD_DOT_NET_VERSION
+                uint structLength = (uint)Marshal.SizeOf(typeof(T));
+#else
                 uint structLength = (uint)Marshal.SizeOf<T>();
+#endif
 
                 if (bufferLength > requiredLength || bufferLength < structLength)
                 {
@@ -68,7 +76,11 @@ namespace MultiProcessorExtensions
                 IntPtr pointer = memProcInfo;
                 for (int i = 0; i < arrayCount; i++)
                 {
+#if OLD_DOT_NET_VERSION
+                    structArray[i] = (T)Marshal.PtrToStructure(pointer, typeof(T));
+#else
                     structArray[i] = Marshal.PtrToStructure<T>(pointer);
+#endif
                     pointer += (int)structLength;
                 }
 
