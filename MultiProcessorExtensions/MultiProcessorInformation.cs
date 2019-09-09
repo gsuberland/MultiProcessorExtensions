@@ -34,10 +34,15 @@ namespace MultiProcessorExtensions
                 throw new InvalidCastException($"Generic type {typeof(T).Name} passed does not match the relationship type {relationshipType}.");
             }
 
+            /* TODO: Rework this to fix the race condition in which the internal data changes between the first call to GetLogicalProcessorInformationEx and the second.
+             * This is a rare or impossible case for everything but groups, which may techncially change over time. For now this code will work in 99.999999% of cases.
+             */
+             
+
             // find the length required for the buffer
             uint requiredLength = 0;
             bool success = NativeMethods.GetLogicalProcessorInformationEx(relationshipType, IntPtr.Zero, ref requiredLength);
-            if (!success && Marshal.GetLastWin32Error() != 122 /* ERROR_INSUFFICIENT_BUFFER */)
+            if (!success && Marshal.GetLastWin32Error() != NativeMethods.ERROR_INSUFFICIENT_BUFFER)
             {
                 throw new InvalidOperationException($"The call to GetLogicalProcessorInformationEx failed. Last error: {Marshal.GetLastWin32Error()}");
             }
