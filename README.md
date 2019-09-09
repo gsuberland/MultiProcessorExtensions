@@ -25,9 +25,7 @@ This library targets most framework versions:
 * .NET Core 3.0, 2.2, 2.1
 * .NET Framework 4.8, 4.7.2, 4.7.1, 4.7, 4.6, 4.5.2, 4.5.1, 4.5, 4.0
 
-It should be usable from both .NET Framework and .NET Core (Windows only).
-
-The functionality and API calls that this library relies upon were added in Windows 7 and Windows Server 2008 R2. Operating system versions prior to this are unsupported.
+This library is only supported under Windows. The functionality and API calls that this library relies upon were added in Windows 7 and Windows Server 2008 R2. Operating system versions prior to this are unsupported.
 
 Tests use xUnit and are built for .NET Core 3.0, 2.2, and 2.1.
 
