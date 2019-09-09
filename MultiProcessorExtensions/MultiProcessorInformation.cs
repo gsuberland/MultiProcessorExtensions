@@ -91,5 +91,23 @@ namespace MultiProcessorExtensions
             return GetLogicalProcessorInformationEx<SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_PROCESSOR>(LOGICAL_PROCESSOR_RELATIONSHIP.ProcessorCore)
                 .Select(ci => new ProcessorCoreInfo(ci.Processor)).ToArray();
         }
+
+        public static ProcessorPackageInfo[] GetProcessorPackageInfo()
+        {
+            return GetLogicalProcessorInformationEx<SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_PROCESSOR>(LOGICAL_PROCESSOR_RELATIONSHIP.ProcessorPackage)
+                .Select(ci => new ProcessorPackageInfo(ci.Processor)).ToArray();
+        }
+
+        public static NumaNodeInfo[] GetNumaNodeInfo()
+        {
+            return GetLogicalProcessorInformationEx<SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_NUMA_NODE>(LOGICAL_PROCESSOR_RELATIONSHIP.NumaNode)
+                .Select(ci => new NumaNodeInfo(ci.NumaNode)).ToArray();
+        }
+
+        public static ProcessorGroupsInfo[] GetGroupsInfo()
+        {
+            return GetLogicalProcessorInformationEx<SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_GROUP>(LOGICAL_PROCESSOR_RELATIONSHIP.Group)
+                .Select(ci => new ProcessorGroupsInfo(ci.Group)).ToArray();
+        }
     }
 }
