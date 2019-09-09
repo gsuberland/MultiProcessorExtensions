@@ -80,30 +80,50 @@ namespace MultiProcessorExtensions
             }
         }
 
+        /// <summary>
+        /// Gets information about cache attributes.
+        /// </summary>
+        /// <returns>Returns an array of ProcessorCacheInfo objects, each describing a processor cache within a processor group.</returns>
         public static ProcessorCacheInfo[] GetCacheInfo()
         {
             return GetLogicalProcessorInformationEx<SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_CACHE>(LOGICAL_PROCESSOR_RELATIONSHIP.Cache)
                 .Select(ci => new ProcessorCacheInfo(ci.Cache)).ToArray();
         }
 
+        /// <summary>
+        /// Gets information about processor cores.
+        /// </summary>
+        /// <returns>Returns an array of ProcessorCoreInfo objects, each describing a processor core within a processor group.</returns>
         public static ProcessorCoreInfo[] GetProcessorCoreInfo()
         {
             return GetLogicalProcessorInformationEx<SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_PROCESSOR>(LOGICAL_PROCESSOR_RELATIONSHIP.ProcessorCore)
                 .Select(ci => new ProcessorCoreInfo(ci.Processor)).ToArray();
         }
 
+        /// <summary>
+        /// Gets information about processor packages.
+        /// </summary>
+        /// <returns>Returns an array of ProcessorPackageInfo objects, each describing a processor package within a processor group.</returns>
         public static ProcessorPackageInfo[] GetProcessorPackageInfo()
         {
             return GetLogicalProcessorInformationEx<SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_PROCESSOR>(LOGICAL_PROCESSOR_RELATIONSHIP.ProcessorPackage)
                 .Select(ci => new ProcessorPackageInfo(ci.Processor)).ToArray();
         }
 
+        /// <summary>
+        /// Gets information about NUMA nodes.
+        /// </summary>
+        /// <returns>Returns an array of NumaNodeInfo objects, each describing a NUMA node within a processor group.</returns>
         public static NumaNodeInfo[] GetNumaNodeInfo()
         {
             return GetLogicalProcessorInformationEx<SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_NUMA_NODE>(LOGICAL_PROCESSOR_RELATIONSHIP.NumaNode)
                 .Select(ci => new NumaNodeInfo(ci.NumaNode)).ToArray();
         }
 
+        /// <summary>
+        /// Gets information about processor groups.
+        /// </summary>
+        /// <returns>Returns a ProcessorGroupsInfo object which describes the processor groups on the system.</returns>
         public static ProcessorGroupsInfo GetGroupsInfo()
         {
             var groupInfos = GetLogicalProcessorInformationEx<SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_GROUP>(LOGICAL_PROCESSOR_RELATIONSHIP.Group)

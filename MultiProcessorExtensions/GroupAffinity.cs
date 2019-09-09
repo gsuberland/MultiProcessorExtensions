@@ -4,9 +4,19 @@ using System.Text;
 
 namespace MultiProcessorExtensions
 {
+    /// <summary>
+    /// Represents a processor group-specific affinity, such as the affinity of a thread.
+    /// </summary>
     public sealed class GroupAffinity
     {
+        /// <summary>
+        /// A bitmap that specifies the affinity for zero or more processors within the specified group.
+        /// </summary>
         public UIntPtr Mask { get; private set; }
+
+        /// <summary>
+        /// The processor group number.
+        /// </summary>
         public UInt16 Group { get; private set; }
 
         internal GroupAffinity(UIntPtr mask, UInt16 group)

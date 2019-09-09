@@ -4,10 +4,24 @@ using System.Text;
 
 namespace MultiProcessorExtensions
 {
+    /// <summary>
+    /// Provides information about an active processor group on the system.
+    /// </summary>
     public sealed class ProcessorGroupInfo
     {
+        /// <summary>
+        /// The maximum number of processors in the group.
+        /// </summary>
         public byte MaximumProcessorCount { get; private set; }
+
+        /// <summary>
+        /// The number of active processors in the group.
+        /// </summary>
         public byte ActiveProcessorCount { get; private set; }
+
+        /// <summary>
+        /// A bitmap that specifies the affinity for zero or more active processors within the group.
+        /// </summary>
         public UIntPtr ActiveProcessorMask { get; private set; }
 
         internal ProcessorGroupInfo(PROCESSOR_GROUP_INFO group)
@@ -17,6 +31,11 @@ namespace MultiProcessorExtensions
             this.ActiveProcessorMask = group.Affinity;
         }
 
+        /// <summary>
+        /// Returns true if a processor with the given index is active in the group.
+        /// </summary>
+        /// <param name="maskIndex">The index of the processor. Must be greater than zero and less than the mask size (32 on 32-bit systems, 64 on 64-bit).</param>
+        /// <returns></returns>
         public bool IsProcessorActive(int maskIndex)
         {
             // check that the given index is a valid bit offset in the mask
