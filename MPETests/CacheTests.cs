@@ -54,7 +54,7 @@ namespace MPETests
         }
 
         [Fact]
-        public void ProcessorCacheGroupMaskIsNotZero()
+        public void ProcessorCacheGroupMasksAreNotZero()
         {
             var caches = MultiProcessorInformation.GetCacheInfo();
             foreach (var cache in caches)
