@@ -10,6 +10,14 @@ This library's capabilities include:
 * Assign processes and threads to specific processor groups.
 * Create new processor groups.
 
+## Why is this library useful?
+
+Historically, Windows processes have maintained an associated affinity mask which specifies which processors the process' threads can be assigned to. The affinity mask's size is limited to the pointer size (64 on modern systems), which limits this mechanism to 64 processors at most. In order to support more than 64 processors, Windows introduces a concept called processor groups. A process is assigned a preferred processor group, and the affinity mask specifies which processors in that group it should have its threads allocated to (by default, any). The preferred processor group from the process is then inherited by its threads.
+
+Multiple processor groups are also used in systems with less than 64 cores, but with more than one physical processor or when non-uniform memory architecture (NUMA) is in use. This is because it makes sense to try to group loads onto the same physical procesor or NUMA node in order to avoid latency and performance reductions casued by transfers over the inter-processor bus.
+
+High-performance applications running on systems with the above described properties may wish to manually specify processor groups for its threads in order to better distribute multi-threaded compute loads.
+
 ## Compatibility
 
 This library targets most framework versions:
